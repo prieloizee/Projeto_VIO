@@ -1,8 +1,9 @@
 import {Navigate} from "react-router-dom";
+import DefaultLayout from "./DefaultLayout";
 
-const ProtectedRoute= ({childrean}) =>{
+const ProtectedRoute= ({children}) =>{
     const isAuthenticated= localStorage.getItem("authenticated");
-    return isAuthenticated ? childrean : <Navigate to ="/" />;
+    return (isAuthenticated ? <DefaultLayout>{children}</DefaultLayout>: <Navigate to ="/" />);
 };
 
 export default ProtectedRoute;

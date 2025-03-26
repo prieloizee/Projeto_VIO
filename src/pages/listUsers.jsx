@@ -15,7 +15,6 @@ import { Link , useNavigate} from 'react-router-dom';
 
 function listUsers() {
   const [users,setUsers] = useState([]);
-  const[auth,setAuth] = useState(false);
   const navigate = useNavigate();
 
   async function getUsers(){
@@ -46,10 +45,6 @@ function listUsers() {
   }
 
   useEffect(()=>{
-    setAuth(localStorage.getItem("authenticated"))
-    // if(!localStorage.getItem("authenticated")){
-    //   navigate("/");
-    // }
     getUsers();
   },[]);
 
@@ -64,7 +59,7 @@ function listUsers() {
           <TableContainer component={Paper} style={{ margin: "2px" }}>
             <Table size="small">
               <TableHead
-                style={{ backgroundColor: "#E7C6FF", borderStyle: "solid" }}
+                style={{ backgroundColor: "#FFC2D1", borderStyle: "solid" }}
               >
                 <TableRow>
                   <TableCell align="center">Nome</TableCell>
@@ -75,7 +70,7 @@ function listUsers() {
               <TableBody>{listUsers}</TableBody>
             </Table>
           </TableContainer>
-          <Button fullWidth variant="contained" onClick={logout}>
+          <Button fullWidth variant="contained" onClick={logout} sx={{ backgroundColor: "pink" }}>
             SAIR
           </Button>
         </div>
