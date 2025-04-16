@@ -5,9 +5,9 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import IconButton from "@mui/material/IconButton";
 const Header = () =>{
     return(
-        <AppBar sx={{backgroundcolor:'purple'}}>
+        <AppBar sx={{backgroundcolor:'#6a3067'}}>
             <Toolbar sx={{display:"flex", justifyContent:"flex-end"}}>
-                <IconButton color="inherit" onClick={()=>{console.log("Cliquei");
+                <IconButton color="black" onClick={()=>{console.log("Cliquei");
             }}
             >
                     <AccountCircleIcon fontSize="large"/>
