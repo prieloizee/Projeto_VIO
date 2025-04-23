@@ -31,7 +31,7 @@ function App() {
             path="/eventos"
             element={
               <ProtectedRoute>
-                <ListEvento />
+                <ListEvento />  
               </ProtectedRoute>
             }
           />

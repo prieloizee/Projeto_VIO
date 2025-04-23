@@ -72,7 +72,7 @@ function listUsers() {
         <TableCell align="center">{user.cpf}</TableCell>
 
         <TableCell align="center">
-          <IconButton onClick={() => deleteUser(user.id)}>
+          <IconButton onClick={() => deleteUser(user.cpf)}>
             <DeleteIcon color="error" />
           </IconButton>
         </TableCell>
@@ -108,7 +108,7 @@ function listUsers() {
           <TableContainer component={Paper} style={{ margin: "2px" }}>
             <Table size="small">
               <TableHead
-                style={{ backgroundColor: "#D360FD", borderStyle: "solid" }}
+                style={{ backgroundColor: "#FF84C6", borderStyle: "solid" }}
               >
                 <TableRow>
                   <TableCell align="center">Nome</TableCell>
@@ -124,18 +124,19 @@ function listUsers() {
             fullWidth
             variant="contained"
             onClick={logout}
-            sx={{ backgroundColor: "#C97EFD" }}
+            sx={{ backgroundColor: "#EF007E" }}
           >
             SAIR
           </Button>
           <Button
-            fullWidth
-            variant="contained"
-            onClick={/evento}
-            sx={{ backgroundColor: "#C97EFD" }}
-          >
-            EVENTO
-          </Button>
+  fullWidth
+  variant="outlined"
+  component={Link}
+  to="/eventos"
+  sx={{ marginBottom: "10px", borderColor: "#EF007E", color: "#EF007E" }}
+>
+  Ver Eventos
+</Button>
         </div>
       )}
     </div>
