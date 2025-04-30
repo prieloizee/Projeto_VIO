@@ -14,8 +14,9 @@ import { Button, IconButton, Alert, Snackbar } from "@mui/material";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Link, useNavigate } from "react-router-dom";
+import ModalCriarIngresso from "../components/ModalCriarIngresso";
 
-function listEvento() {
+function ListEvento() {
   const [events, setEvento] = useState([]);
   const [alert, setAlert] = useState({
     // visibilidade (false = oculto; true = visível)
@@ -71,11 +72,14 @@ function listEvento() {
         <TableCell align="center">{evento.descricao}</TableCell>
         <TableCell align="center">{evento.data_hora}</TableCell>
         <TableCell align="center">{evento.local}</TableCell>
-       
-
         <TableCell align="center">
           <IconButton onClick={() => deleteEvento(evento.id_evento)}>
             <DeleteIcon color="error" />
+          </IconButton>
+        </TableCell>
+        <TableCell align="center">
+          <IconButton onClick={() => abrirModalIngresso(evento)}>
+            +
           </IconButton>
         </TableCell>
       </TableRow>
@@ -94,13 +98,42 @@ function listEvento() {
     getEvento();
   }, []);
 
+  const [eventoSelecionado, setEventoSelecionado] = useState("");
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const abrirModalIngresso = (evento) => {
+    setEventoSelecionado(evento);
+    setModalOpen(true);
+  };
+
+  const fecharModalIngresso = () => {
+    setModalOpen(false);
+    setEventoSelecionado("");
+  };
+
   return (
     <div>
-      <Snackbar open = {alert.open} autoHideDuration={3000} onClose={handleCloseAlert} anchorOrigin={{vertical:"top", horizontal:"center"}}>
-      <Alert onClose={handleCloseAlert} severity={alert.severity} sx={{width:"100%"}}>
-        {alert.message}
-      </Alert>
+      <Snackbar
+        open={alert.open}
+        autoHideDuration={3000}
+        onClose={handleCloseAlert}
+        anchorOrigin={{ vertical: "top", horizontal: "center" }}
+      >
+        <Alert
+          onClose={handleCloseAlert}
+          severity={alert.severity}
+          sx={{ width: "100%" }}
+        >
+          {alert.message}
+        </Alert>
       </Snackbar>
+
+      <ModalCriarIngresso
+        open={modalOpen}
+        onClose={fecharModalIngresso}
+        eventoSelecionado={eventoSelecionado}
+      />
+
       {events.length === 0 ? ( //? = após a '?' é true
         <p>Carregando eventos</p>
       ) : (
@@ -114,10 +147,11 @@ function listEvento() {
               >
                 <TableRow>
                   <TableCell align="center">Nome</TableCell>
-                  <TableCell align="center">Descrção</TableCell>
-                  <TableCell align="center">Data_hora</TableCell>
+                  <TableCell align="center">Descrição</TableCell>
+                  <TableCell align="center">Data e hora</TableCell>
                   <TableCell align="center">Local</TableCell>
-                  <TableCell align="center">Ações</TableCell>
+                  <TableCell align="center">Excluir</TableCell>
+                  <TableCell align="center">Criar Ingresso</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>{listEvento}</TableBody>
@@ -136,4 +170,4 @@ function listEvento() {
     </div>
   );
 }
-export default listEvento;
+export default ListEvento;
