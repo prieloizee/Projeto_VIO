@@ -30,19 +30,12 @@ function App() {
           <Route
             path="/eventos"
             element={
-              <ProtectedRoute>
+              
                 <ListEvento />  
-              </ProtectedRoute>
+              
             }
           />
-          <Route
-            path="/eventos"
-            element={
-              <ProtectedRoute>
-                <ListEvento />  
-              </ProtectedRoute>
-            }
-          />
+          
         <Route
             path="/CreateEvent"
             element={
